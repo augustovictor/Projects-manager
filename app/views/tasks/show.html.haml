@@ -1,0 +1,20 @@
+%h1
+  You're viewing:
+  = @task.name
+= link_to "Edit task", edit_task_path(@task)
+%h4
+  Project:
+  = link_to @task.project.name, project_path(@task.project)
+
+%div
+  %h3
+    Priority -
+    = @task.priority
+
+%hr
+
+%div
+  %h3
+    Observations
+  %p
+    = @task.observations

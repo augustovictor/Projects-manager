@@ -1,0 +1,45 @@
+= link_to "New project", new_project_path
+
+%h1
+  Projects
+- if !current_user.projects.empty?
+  %table
+    %thead
+      %th
+        Id
+      %th
+        Name
+      %th
+        Description
+
+      %th
+        Last task
+      %th
+        Created at
+    %tbody
+      - current_user.projects.each do |project|
+        %tr
+          %td
+            = project.id
+          %td
+            = link_to project.name, project_url(project)
+          %td
+            = project.description.truncate(50)
+          %td
+            - if !project.tasks.empty?
+              = link_to project.tasks.last.name, task_path(project.tasks.last)
+            - else
+              %em
+                Any tasks yet
+          %td
+            = project.created_at.day
+            \/
+            = project.created_at.month
+            \/
+            = project.created_at.year
+
+- else
+  %em
+    Any projects yet.
+  %br
+  = link_to "New project", new_project_path

@@ -1,0 +1,19 @@
+%h1
+  Users
+
+%table
+  %thead
+    %th
+      Id
+    %th
+      Name
+    %th
+      Actions
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td
+          = user.id
+        %td
+          = link_to user.name, user_path(user)
+
