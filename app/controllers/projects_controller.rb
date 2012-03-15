@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @projects = Project.all
+    @projects = current_user.projects.order("updated_at").page(params[:page]).per_page(5)
   end
 
   def show
@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(params[:project])
 
     if @project.save
-      redirect_to(projects_path, :notice => "Successfully created project!")
+      redirect_to(@project, :notice => "Successfully created project!")
 
     else
       render :action => 'new'
@@ -37,6 +37,15 @@ class ProjectsController < ApplicationController
     if @project.update_attributes(params[:project])
       redirect_to(@project, :notice => "#{@project.name} successfully updated!")
     end
+
+  end
+
+  def destroy
+    @project = Project.find(params[:id]).destroy
+    redirect_to :back, :notice => "Successfully deletd!"
+  end
+
+  def priorityLevel
 
   end
 

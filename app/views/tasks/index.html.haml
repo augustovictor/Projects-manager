@@ -3,7 +3,7 @@
 %h1
   Tasks
 - if !@tasks.empty?
-  %table
+  %table.table.table-striped
     %thead
       %th
         Priority
@@ -28,7 +28,7 @@
           %td
             = link_to task.name, task_url(task)
           %td
-            = task.observations.truncate(50)
+            = task.observations.truncate(30)
           %td
             = task.created_at.day
             \/
@@ -36,7 +36,9 @@
             \/
             = task.created_at.year
           %td
-            = link_to "Delete", task_path(task), :method => :delete, :confirm => "Are you sure?"
+            = link_to "Edit", edit_task_path(task), :class => "btn btn-mini"
+            = link_to "Delete", task_path(task), :method => :delete, :confirm => "Delete \"#{task.name}\" task?",
+            :class => "btn btn-mini btn-danger"
 
 - else
   %em

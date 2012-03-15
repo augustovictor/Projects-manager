@@ -1,14 +1,13 @@
 %h1
   Users
 
-%table
+%table.table.table-striped
   %thead
     %th
       Id
     %th
       Name
-    %th
-      Actions
+
   %tbody
     - @users.each do |user|
       %tr

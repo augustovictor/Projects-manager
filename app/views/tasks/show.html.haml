@@ -1,14 +1,17 @@
 %h1
   You're viewing:
   = @task.name
-= link_to "Edit task", edit_task_path(@task)
+  = link_to "Edit", edit_task_path(@task), :class => "btn btn-mini"
+
+%br
+
 %h4
   Project:
   = link_to @task.project.name, project_path(@task.project)
 
 %div
   %h3
-    Priority -
+    Priority:
     = @task.priority
 
 %hr
@@ -18,3 +21,5 @@
     Observations
   %p
     = @task.observations
+
+= link_to "Back to #{@task.project.name}", @task.project, :class => "btn btn-big"

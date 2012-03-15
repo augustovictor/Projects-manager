@@ -18,7 +18,7 @@ class TasksController < ApplicationController
     @task = Task.create(params[:task])
 
     if @task.save
-      redirect_to(tasks_path, :notice => "Successfully task created!")
+      redirect_to(@task.project, :notice => "Successfully task created!")
     else
       render :action => 'new'
     end

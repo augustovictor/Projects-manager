@@ -1,12 +1,8 @@
-= link_to "New project", new_project_path
-
 %h1
   Projects
 - if !current_user.projects.empty?
-  %table
+  %table.table.table-striped
     %thead
-      %th
-        Id
       %th
         Name
       %th
@@ -15,12 +11,12 @@
       %th
         Last task
       %th
-        Created at
+        Updated at
+      %th
+        Actions
     %tbody
-      - current_user.projects.each do |project|
+      - @projects.order(:updated_at).reverse.each do |project|
         %tr
-          %td
-            = project.id
           %td
             = link_to project.name, project_url(project)
           %td
@@ -30,16 +26,24 @@
               = link_to project.tasks.last.name, task_path(project.tasks.last)
             - else
               %em
-                Any tasks yet
+                = link_to "Any tasks yet", new_task_path
           %td
-            = project.created_at.day
-            \/
-            = project.created_at.month
-            \/
-            = project.created_at.year
+            = project.updated_at.strftime("%b %e, %Y")
+
+          %td
+            = link_to "Edit", edit_project_path(project), :class => "btn btn-mini"
+
+            = link_to "Delete", project_path(project), :method => :delete, :confirm => "Delete \"#{project.name}\" project?",
+            :class => "btn btn-mini btn-danger"
 
 - else
   %em
-    Any projects yet.
-  %br
-  = link_to "New project", new_project_path
+    = link_to "Any projects yet.", new_project_path
+
+= link_to "<", params.merge(:page => @projects.previous_page), :class => "btn btn-mini"
+%em
+  = @projects.current_page
+  of
+  = @projects.total_pages
+
+= link_to ">", params.merge(:page => @projects.next_page), :class => "btn btn-mini"

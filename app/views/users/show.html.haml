@@ -1,7 +1,7 @@
 %h1
   = @user.name
 
-%table
+%table.table.table-striped
   %thead
     %th
       Name
@@ -14,3 +14,4 @@
       %td
         = @user.email
 
+= link_to "Back", :back, :class => "btn btn-big"
