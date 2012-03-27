@@ -16,6 +16,16 @@
 //
 // Example:
 // @linkColor: #ff0000;
+@priorityBorder: 12px;
+@priorityPadding: 1px;
+@priorityAlign: center;
+@priorityWidth: 20px;
+@priorityFontSize: 10px;
+@priorityOpacity: 0.9;
+@priorityColor: white;
+@priorityTextShadow: 1px 1px 0px black;
+
+
 body {
   margin-top: 60px;
 }
@@ -31,4 +41,44 @@ body {
 
 .titMenu {
   border-bottom: 1px solid #eee;
+}
+
+.low {
+	-moz-border-radius: @priorityBorder;
+	-webkit-border-radius: @priorityBorder;
+	background: #51A351 !important;
+	color: @priorityColor;
+	font-size: @priorityFontSize;
+	padding: @priorityPadding;
+	text-align: @priorityAlign;
+	text-shadow: @priorityTextShadow;
+	width: @priorityWidth;
+}
+
+.normal {
+	-moz-border-radius: @priorityBorder;
+	-webkit-border-radius: @priorityBorder;
+	background: #EE5F0B !important;
+	color: @priorityColor;
+	font-size: @priorityFontSize;
+	padding: @priorityPadding;
+	text-align: @priorityAlign;
+	text-shadow: @priorityTextShadow;
+	width: @priorityWidth;
+}
+
+.high {
+	-moz-border-radius: @priorityBorder;
+	-webkit-border-radius: @priorityBorder;
+	background: #C8403A !important;
+	color: @priorityColor;
+	font-size: @priorityFontSize;
+	padding: @priorityPadding;
+	text-align: @priorityAlign;
+	text-shadow: @priorityTextShadow;
+	width: @priorityWidth;
+}
+
+.low:hover, .normal:hover, .high:hover {
+	opacity: 1;
 }

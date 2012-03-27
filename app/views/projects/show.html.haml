@@ -34,6 +34,9 @@
       %th
         Priority
       %th
+        Done
+        
+      %th
         Name
       %th
         Observation
@@ -42,13 +45,18 @@
 
     %tbody
       - @project.tasks.order(:priority).reverse.each do |task|
-        %tr
+        %tr{:class => "#{done_task}"}
           %td
-            = task.priority
+            %label{:class => "#{priority_class(task.priority)}"}
+              = task.priority
+          %td
+            %label.checkbox
+              = check_box_tag(:done_task, nil, task.done_task)
+            
           %td
             = link_to task.name.truncate(25), task_path(task)
           %td
-            = task.observations.truncate(90)
+            = task.observations.truncate(80)
           %td
             = link_to "Edit", edit_task_path(task), :class => "btn btn-mini"
             = link_to "Delete", task_path(task), :method => :delete, :confirm => "Delete \"#{task.name}\" task?", :class => "btn btn-mini btn-danger"

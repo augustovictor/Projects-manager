@@ -1,6 +1,7 @@
 %br
 = simple_form_for(@task) do |f|
   %fieldset
+    = f.input :done_task
     = f.input :priority, :collection => 0..2, :as => :radio, :class => "inline"
     = f.input :project_id, :collection => current_user.projects, :include_blank => false
     = f.input :name, :label => "Task name"

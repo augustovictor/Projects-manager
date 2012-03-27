@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @projects = current_user.projects.order("updated_at").page(params[:page]).per_page(5)
+    @projects = current_user.projects.page(params[:page]).per_page(5)
   end
 
   def show
@@ -43,10 +43,6 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id]).destroy
     redirect_to :back, :notice => "Successfully deletd!"
-  end
-
-  def priorityLevel
-
   end
 
 end

@@ -15,7 +15,7 @@
       %th
         Actions
     %tbody
-      - @projects.order(:updated_at).reverse.each do |project|
+      - @projects.reverse.each do |project|
         %tr
           %td
             = link_to project.name, project_url(project)
