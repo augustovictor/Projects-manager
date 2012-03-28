@@ -5,8 +5,4 @@ module ApplicationHelper
    result[level]
   end
   
-  def done_task
-    
-  end
-  
 end

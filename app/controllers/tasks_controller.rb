@@ -32,14 +32,12 @@ class TasksController < ApplicationController
   def edit
     @task = Task.find(params[:id])
   end
-
+  
+  respond_to :html, :json
   def update
     @task = Task.find(params[:id])
-
-    if @task.update_attributes(params[:task])
-      redirect_to(@task, :notice => "#{@task.name} successfully updated!")
-    end
-
+    @task.update_attributes(params[:task])
+    respond_with @task
   end
     
 end

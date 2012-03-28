@@ -7,6 +7,8 @@ gem 'rails', '3.1.1'
 
 gem 'devise'
 
+gem 'best_in_place'
+
 gem 'haml'
 
 gem 'mysql2'

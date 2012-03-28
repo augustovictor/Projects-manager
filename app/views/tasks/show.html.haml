@@ -1,7 +1,10 @@
 %h1
-  You're viewing:
-  = @task.name
+  = best_in_place @task, :name
   = link_to "Edit", edit_task_path(@task), :class => "btn btn-mini"
+  
+%label
+  Done?
+  = best_in_place @task, :done_task, type: :checkbox
 
 %br
 
